@@ -1,0 +1,63 @@
+body {
+    width: 100%;
+    height: 100%;
+    background-image: url(/static/img/big_screen/bg_screen2.png);
+    background-size: 100% 100%;
+    /*-webkit-background-size: cover;*/
+    /*-moz-background-size: cover;*/
+    /*-o-background-size: cover;*/
+    /*background-size: cover;*/
+}
+
+.salesTitle {
+    text-align: center;
+    color: #FFFFFF;
+    font-size: 1.8em;
+    height: 5%;
+    padding-top:0.5%;
+}
+
+.content {
+    border-top: 3px solid #063881;
+    border-bottom: 3px solid #07255f;
+    float: left;
+    background: linear-gradient(50deg, rgba(8, 43, 123, 0.5), rgba(8, 20, 61, 0.5), rgba(8, 43, 123, 0.5));
+}
+
+.contentTitle {
+    margin-top: 20px;
+    font-size: 18px;
+    width: 180px;
+    float: left;
+    color: white;
+}
+
+.scrollbox { /* width: 700px; */
+    margin: 0 auto;
+    overflow: hidden; /* border: 1px solid #CFCFCF; */ /* padding: 10px; */
+}
+
+#scrollDiv { /* width:700px; */
+    background-color: #11153c;
+    overflow: hidden;
+}
+
+.playListTitleOdd {
+    padding-top: 13px;
+    padding-bottom: 13px;
+    font-size: 1em;
+    color: #FFFFFF;
+    background-color: #11295c;
+}
+
+.playListTitleEven {
+    padding-top: 13px;
+    padding-bottom: 13px;
+    font-size: 1em;
+    color: #FFFFFF;
+    background-color: #11163f;
+}
+
+.numberStyle {
+    color: #2edbff;
+}

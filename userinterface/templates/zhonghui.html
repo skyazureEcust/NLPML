@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html style="height: 100%;width: 100%">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>中汇用户画像</title>
+    <link rel="stylesheet" href="../static/My/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/My/css/bootstrap-theme.css">
+    <link rel="stylesheet" href="../static/My/css/elegant-icons-style.css">
+    <link rel="stylesheet" href="../static/My/css/font-awesome.css">
+    <link rel="stylesheet" href="../static/My/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.css">
+    <link rel="stylesheet" href="../static/My/css/style.css">
+    <link rel="stylesheet" href="../static/My/css/style-responsive.css">
+    <link rel="stylesheet" href="../static/My/css/jquery-ui-1.10.4.min.css">
+    <!--<link rel="stylesheet" href="../static/My/css/mystyle.css?v=20180626">-->
+    <!--<link rel="stylesheet" href="../static/css/big_screen/my_big_shenji.css?v=201810071046">-->
+    <style>
+        body {
+            width: 100%;
+            height: 100%;
+            background-image: url(/static/img/big_screen/bg_screen2.png);
+            background-size: 100% 100%;
+            /*-webkit-background-size: cover;*/
+            /*-moz-background-size: cover;*/
+            /*-o-background-size: cover;*/
+            /*background-size: cover;*/
+        }
+
+        .salesTitle {
+            text-align: center;
+            color: #FFFFFF;
+            font-size: 1.8em;
+            height: 5%;
+            padding-top: 0.6%;
+        }
+
+        .content {
+            border-top: 3px solid #063881;
+            border-bottom: 3px solid #07255f;
+            float: left;
+            background: linear-gradient(50deg, rgba(8, 43, 123, 0.5), rgba(8, 20, 61, 0.5), rgba(8, 43, 123, 0.5));
+        }
+
+        .contentTitle {
+            margin-top: 20px;
+            font-size: 18px;
+            width: 180px;
+            float: left;
+            color: white;
+        }
+
+        .scrollbox { /* width: 700px; */
+            margin: 0 auto;
+            overflow: hidden; /* border: 1px solid #CFCFCF; */ /* padding: 10px; */
+        }
+
+        #scrollDiv { /* width:700px; */
+            background-color: #11153c;
+            overflow: hidden;
+        }
+
+        .playListTitleOdd {
+            padding-top: 13px;
+            padding-bottom: 13px;
+            font-size: 1em;
+            color: #FFFFFF;
+            background-color: #11295c;
+        }
+
+        .playListTitleEven {
+            padding-top: 13px;
+            padding-bottom: 13px;
+            font-size: 1em;
+            color: #FFFFFF;
+            background-color: #11163f;
+        }
+
+        .numberStyle {
+            color: #2edbff;
+        }
+    </style>
+	
+	
+	<!--highcharts资源-->
+	<script src="https://img.hcharts.cn/jquery/jquery-1.8.2.min.js"></script>
+	<script src="https://img.hcharts.cn/highcharts/highcharts.js"></script>
+	<script src="https://img.hcharts.cn/highcharts/modules/exporting.js"></script>
+	<script src="https://img.hcharts.cn/highcharts-plugins/highcharts-zh_CN.js"></script>
+	<!--highcharts资源-->
+	
+	<!--echarts资源-->
+	<script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts.min.js"></script>
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-gl/echarts-gl.min.js"></script>
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-stat/ecStat.min.js"></script>
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/dataTool.min.js"></script>
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/china.js"></script>
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/world.js"></script>
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=ZUONbpqGBsYGXNIYHicvbAbM"></script>
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/bmap.min.js"></script>
+    <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/simplex.js"></script>
+	<!--echarts资源-->
+
+    <script src="../static/My/js/jquery.js"></script>
+    <script src="../static/My/js/jquery-ui-1.10.4.min.js"></script>
+    <script src="../static/My/js/jquery-1.8.3.min.js"></script>
+    <script src="../static/My/js/jquery-ui-1.9.2.custom.min.js"></script>
+    <script src="../static/My/js/bootstrap.min.js"></script>
+    <script src="../static/My/js/jquery.scrollTo.min.js"></script>
+    <script src="../static/My/js/jquery.nicescroll.js"></script>
+    <script src="../static/My/assets/jquery-knob/js/jquery.knob.js"></script>
+    <script src="../static/My/js/jquery.sparkline.js"></script>
+    <script src="../static/My/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.js"></script>
+    <script src="../static/My/js/owl.carousel.js"></script>
+
+    <script src="../static/js/big_screen/jq_scroll.js"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function () {
+            jQuery("#scrollDiv").Scroll({line: 1, speed: 500, timer: 3000, up: "but_up", down: "but_down"});
+        });
+    </script>
+
+    <script src="../static/My/js/Echarts/echarts.min.js"></script>
+    <script src="../static/My/js/Echarts/chalk.js"></script>
+    <script src="../static/My/js/Echarts/halloween.js"></script>
+    <script src="../static/My/js/Echarts/macarons.js"></script>
+    <script src="../static/My/js/Echarts/purple-passion.js"></script>
+    <script src="../static/My/js/Echarts/roma.js"></script>
+    <script src="../static/My/js/Echarts/walden.js"></script>
+    <script src="../static/My/js/Echarts/westeros.js"></script>
+    <script src="../static/My/js/Echarts/wonderland.js"></script>
+</head>
+<body onresize="resizeFunction()" style="overflow: hidden;">
+
+<div class="salesTitle">中汇用户画像——ICBC</div>
+<div class="col-md-3" style="height:94%;">
+    <div class="content" style="width:100%;height:44%;margin-left:5%;margin-top:14%;">
+        <div class="row">
+            <div class="contentTitle">
+                &emsp;&emsp;交易量走势图
+            </div>
+            <div class="contentTitleNumber">
+                <p style="color:#2edbff;font-size:3em;float:right;">
+                    \ 01&nbsp;&nbsp;&nbsp;
+                </p>
+            </div>
+        </div>
+        <div class="nav-tabs-custom" style="width:100%;height:100%;">
+            <div class="tab-content no-padding" style="width:100%;height:95%;">
+                <div class="chart tab-pane active" id="agent"
+                     style="height:85%;width:85%;position:relative;top:-10%;left:5%"></div>
+            </div>
+        </div>
+    </div>
+	<div class="content" style="width:100%;height:45%;margin-left:5%;margin-top:1%;">
+        <div class="row">
+            <div class="contentTitle">
+                &emsp;&emsp;交易方式分布图
+            </div>
+            <div class="contentTitleNumber">
+                <p style="color:#2edbff;font-size:3em;float:right;">
+                    \ 02&nbsp;&nbsp;&nbsp;
+                </p>
+            </div>
+        </div>
+        <div class="nav-tabs-custom" style="width:100%;height:100%;">
+            <div class="tab-content no-padding" style="width:100%;height:95%;">
+                <div class="chart tab-pane active" id="way"
+                     style="height:90%;width:95%;position:relative;top:-15%;left:5%"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-md-6" style="height:94%;">
+    <div class="content" style="width:100%;height:90%;margin-top:6.8%;">
+        <div class="row">
+            <div class="contentTitle">
+                &emsp;&emsp;图谱
+            </div>
+            <div class="contentTitleNumber">
+                <p style="color:#2edbff;font-size:3em;float:right;">
+                    \ 03&nbsp;&nbsp;&nbsp;
+                </p>
+            </div>
+        </div>
+        <div class="nav-tabs-custom" style="width:100%;height:100%;">
+            <div class="tab-content no-padding" style="width:100%;height:95%;">
+                <div class="chart tab-pane active" id="shenji_charts"
+                     style="height:95%;width:99%;position:relative;top:-10%;"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-md-3" style="height:94%;">
+    <div class="content" style="width:100%;height:44%;margin-left:-5%;margin-top:14%;">
+        <div class="row">
+            <div class="contentTitle">
+                &emsp;&emsp;交易模式分布图
+            </div>
+            <div class="contentTitleNumber">
+                <p style="color:#2edbff;font-size:3em;float:right;">
+                    \ 04&nbsp;&nbsp;&nbsp;
+                </p>
+            </div>
+        </div>
+        <div class="nav-tabs-custom" style="width:100%;height:100%;">
+            <div class="tab-content no-padding" style="width:100%;height:95%;">
+                <div class="chart tab-pane active" id="mode"
+                     style="height:85%;width:85%;position:relative;top:-10%;left:5%"></div>
+            </div>
+        </div>
+    </div>
+	<div class="content" style="width:100%;height:45%;margin-left:-5%;margin-top:1%;">
+        <div class="row">
+            <div class="contentTitle">
+                &emsp;&emsp;交易产品分布图
+            </div>
+            <div class="contentTitleNumber">
+                <p style="color:#2edbff;font-size:3em;float:right;">
+                    \ 05&nbsp;&nbsp;&nbsp;
+                </p>
+            </div>
+        </div>
+        <div class="nav-tabs-custom" style="width:100%;height:100%;">
+            <div class="tab-content no-padding" style="width:100%;height:95%;">
+                <div class="chart tab-pane active" id="product"
+                     style="height:90%;width:95%;position:relative;top:-15%;left:5%"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<script>
+jQuery(document).ready(function () {
+        chart();
+		mode();
+		way();
+		product();
+		agent();
+    });
+	
+//画交易模式图
+function drawMode(data1,data2){
+	//document.getElementById("mode").innerHTML = "<div id='charts' style='height:99%;width:99%;position:relative;top:5%;'></div>";
+	var dom = document.getElementById("mode");
+	var myChart = echarts.init(dom);
+	var app = {};
+	option = null;
+
+	var option = {
+    title : {
+        text: '',
+        subtext: '',
+        x:'center'
+    },
+    tooltip : {
+        trigger: 'item',
+        formatter: "{a} <br/>{b} : {c} ({d}%)"
+    },
+	color:["#2ec7c9","#ffb980","#b6a2de"],
+    legend: {
+        orient: 'vertical',
+        left: 'left',
+        //data: ['协商驱动','订单驱动','报价驱动'],
+		data:data1,
+		top:25,
+		textStyle:{
+            color:'#ddd'
+        }
+    },
+    series : [
+        {
+            name: '访问来源',
+            type: 'pie',
+            radius : '55%',
+            center: ['55%', '65%'],
+			/*
+            data:[
+                {value:335, name:'协商驱动'},
+                {value:310, name:'订单驱动'},
+                {value:234, name:'报价驱动'}
+            ],*/
+			data:data2,
+            itemStyle: {
+                emphasis: {
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            }
+        }
+    ]
+	};
+	if (option && typeof option === "object") {
+		myChart.setOption(option, true);
+	}
+}
+
+//画交易方式图
+function drawWay(data1){
+	var dom = document.getElementById("way");
+	var myChart = echarts.init(dom);
+	var app = {};
+	option = null;
+
+	/*
+	var data = [{
+		"name": "点击成交",
+		"value": 800
+	}, {
+		"name": "连续撮合",
+		"value": 878
+	}, {
+		"name": "协商成交",
+		"value": 710
+	}, {
+		"name": "询价成交",
+		"value": 660
+	}];*/
+	var data=data1;
+	var xData = [],
+        yData = [];
+	var min = 50; 
+	data.map(function(a, b) {
+		xData.push(a.name);
+		if (a.value === 0) {
+			yData.push(a.value + min);
+		} else {
+			yData.push(a.value);
+		}
+	});
+
+	option = {
+    backgroundColor:"",
+    color: ['#ffb980'],
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'line',
+            lineStyle: {
+                opacity: 0
+            }
+        },
+        formatter: function(prams) {
+            if (prams[0].data === min) {
+                return "交易量：0"
+            } else {
+                return "交易量：" + prams[0].data + ""
+            }
+        }
+    },
+    legend: {
+        data: ['交易量', '背景'],
+        show: false
+    },
+    grid: {
+        left: '0%',
+        right: '0%',
+        bottom: '5%',
+        top: '15%',
+        height: '85%',
+        containLabel: true,
+        z: 22
+    },
+    xAxis: [{
+        type: 'category',
+        gridIndex: 0,
+        data: xData,
+        axisTick: {
+            alignWithLabel: true
+        },
+        axisLine: {
+            lineStyle: {
+                color: '#0c3b71'
+            }
+        },
+        axisLabel: {
+            show: true,
+             color: 'rgb(170,170,170)',
+             fontSize:16,
+			 interval:0,                                           
+			rotate:40
+        }
+				
+    }],
+    yAxis: [{
+            type: 'value',
+            gridIndex: 0,
+            splitLine: {
+                show: false
+            },
+            axisTick: {
+                show: false
+            },
+            //min: min,
+            //max: 1000,
+            axisLine: {
+                lineStyle: {
+                    color: '#0c3b71'
+                }
+            },
+            axisLabel: {
+                color: 'rgb(170,170,170)',
+                formatter: '{value} '
+            }
+        },
+        {
+            type: 'value',
+            gridIndex: 0,
+            //min: min,
+            //max: 1000,
+            splitNumber: 12,
+            splitLine: {
+                show: false
+            },
+            axisLine: {
+                show: false
+            },
+            axisTick: {
+                show: false
+            },
+            axisLabel: {
+                show: false
+            },
+            splitArea: {
+                show: true,
+                areaStyle: {
+                    color: ['rgba(250,250,250,0.0)', 'rgba(250,250,250,0.05)']
+                }
+            }
+        }
+    ],
+    series: [{
+            name: '交易量',
+            type: 'bar',
+            barWidth: '30%',
+            xAxisIndex: 0,
+            yAxisIndex: 0,
+            itemStyle: {
+                normal: {
+                    barBorderRadius: 30,
+                    color: new echarts.graphic.LinearGradient(
+                        0, 0, 0, 1, [{
+                                offset: 0,
+                                color: '#ff6980'
+                            },
+                            {
+                                offset: 0.5,
+                                color: '#ffa980'
+                            },
+                            {
+                                offset: 1,
+                                color: '#fff980'
+                            }
+                        ]
+                    )
+                }
+            },
+            data: yData,
+            zlevel: 11
+
+        },
+        {
+            name: '背景',
+            type: 'bar',
+            barWidth: '50%',
+            xAxisIndex: 0,
+            yAxisIndex: 1,
+            barGap: '-135%',
+            data: [1000, 1000, 1000, 1000],
+            itemStyle: {
+                normal: {
+                    color: 'rgba(255,255,255,0.1)'
+                }
+            },
+            zlevel: 9
+        },
+      
+    ]
+};
+	
+	if (option && typeof option === "object") {
+		myChart.setOption(option, true);
+	}
+}
+
+//画交易产品图
+function drawProduct(data1){
+	//document.getElementById("mode").innerHTML = "<div id='charts' style='height:99%;width:99%;position:relative;top:5%;'></div>";
+	var dom = document.getElementById("product");
+	var myChart = echarts.init(dom);
+	var app = {};
+	option = null;
+	
+	var data=data1;
+	/*
+	var data = [{
+    "name": "货币掉期",
+    "value": 800
+}, {
+    "name": "外币拆借",
+    "value": 878
+}, {
+    "name": "外汇远期",
+    "value": 710
+}, {
+    "name": "外汇期权",
+    "value": 800
+}, {
+    "name": "外汇即期",
+    "value": 660
+}, {
+    "name": "外汇掉期",
+    "value": 800
+}];*/
+	var xData = [],
+        yData = [];
+	var min = 50; 
+
+data.map(function(a, b) {
+    xData.push(a.name);
+    if (a.value === 0) {
+        yData.push(a.value + min);
+    } else {
+        yData.push(a.value);
+    }
+});
+option = {
+    backgroundColor:"",
+    color: ['#3398DB'],
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'line',
+            lineStyle: {
+                opacity: 0
+            }
+        },
+        formatter: function(prams) {
+            if (prams[0].data === min) {
+                return "交易量：0"
+            } else {
+                return "交易量：" + prams[0].data + ""
+            }
+        }
+    },
+    legend: {
+        data: ['交易量', '背景'],
+        show: false
+    },
+    grid: {
+        left: '0%',
+        right: '0%',
+        bottom: '5%',
+        top: '15%',
+        height: '85%',
+        containLabel: true,
+        z: 22
+    },
+    xAxis: [{
+        type: 'category',
+        gridIndex: 0,
+        data: xData,
+        axisTick: {
+            alignWithLabel: true
+        },
+        axisLine: {
+            lineStyle: {
+                color: '#0c3b71'
+            }
+        },
+        axisLabel: {
+            show: true,
+             color: 'rgb(170,170,170)',
+             fontSize:16,
+			 interval:0,                                           
+			rotate:40
+        }
+				
+    }],
+    yAxis: [{
+            type: 'value',
+            gridIndex: 0,
+            splitLine: {
+                show: false
+            },
+            axisTick: {
+                show: false
+            },
+            //min: min,
+            //max: 1000,
+            axisLine: {
+                lineStyle: {
+                    color: '#0c3b71'
+                }
+            },
+            axisLabel: {
+                color: 'rgb(170,170,170)',
+                formatter: '{value} '
+            }
+        },
+        {
+            type: 'value',
+            gridIndex: 0,
+            //min: min,
+            //max: 1000,
+            splitNumber: 12,
+            splitLine: {
+                show: false
+            },
+            axisLine: {
+                show: false
+            },
+            axisTick: {
+                show: false
+            },
+            axisLabel: {
+                show: false
+            },
+            splitArea: {
+                show: true,
+                areaStyle: {
+                    color: ['rgba(250,250,250,0.0)', 'rgba(250,250,250,0.05)']
+                }
+            }
+        }
+    ],
+    series: [{
+            name: '交易量',
+            type: 'bar',
+            barWidth: '30%',
+            xAxisIndex: 0,
+            yAxisIndex: 0,
+            itemStyle: {
+                normal: {
+                    barBorderRadius: 30,
+                    color: new echarts.graphic.LinearGradient(
+                        0, 0, 0, 1, [{
+                                offset: 0,
+                                color: '#00feff'
+                            },
+                            {
+                                offset: 0.5,
+                                color: '#027eff'
+                            },
+                            {
+                                offset: 1,
+                                color: '#0286ff'
+                            }
+                        ]
+                    )
+                }
+            },
+            data: yData,
+            zlevel: 11
+
+        },
+        {
+            name: '背景',
+            type: 'bar',
+            barWidth: '50%',
+            xAxisIndex: 0,
+            yAxisIndex: 1,
+            barGap: '-135%',
+            data: [1000, 1000, 1000, 1000, 1000, 1000, 1000],
+            itemStyle: {
+                normal: {
+                    color: 'rgba(255,255,255,0.1)'
+                }
+            },
+            zlevel: 9
+        },
+      
+    ]
+};
+
+	if (option && typeof option === "object") {
+		myChart.setOption(option, true);
+	}
+}
+
+//画成交状态图
+function drawAgent(data1,data2){
+	//document.getElementById("mode").innerHTML = "<div id='charts' style='height:99%;width:99%;position:relative;top:5%;'></div>";
+	var dom = document.getElementById("agent")
+	var myChart = echarts.init(dom);
+	var app = {};
+	option = null;
+
+	var xAxisData = data1
+	//var xAxisData = ['2018-01', '2018-02', '2018-03', '2018-04', '2018-05', '2018-06', '2018-07', '2018-08', '2018-09', '2018-10','2018-11','2018-12'];
+	var legendData= ['发起量','报价量'];
+	var title = "";
+	var serieData = [];
+	/*
+	var metaDate = [
+		[120, 140, 100, 120, 300, 230, 130, 170,140, 120, 300, 230],
+		[100,200, 140, 300, 200, 180, 100, 300, 230, 130, 100 ,300,]
+	]*/
+	var metaDate = data2
+	for(var v=0; v < legendData.length ; v++){
+		var serie = {
+			name:legendData[v],
+			type: 'line',
+			symbol:"circle",
+			symbolSize:10,
+			data: metaDate[v]
+		};
+		serieData.push(serie)
+	}
+	var colors = ["#036BC8","#4A95FF","#5EBEFC","#2EF7F3","#FFFFFF"];
+	var option = {
+    backgroundColor: '',
+    title : {text: title,textAlign:'left',textStyle:{color:"#fff",fontSize:"16",fontWeight:"normal"}},
+    legend: {
+    	show:true,left:"right",data:legendData,y:"1%",
+        itemWidth:18,itemHeight:12,textStyle:{color:"#fff",fontSize:14},
+    },
+    color:colors,
+    grid: {left: '2%',top:"12%",bottom: "1%",right:"0%",containLabel: true},
+    tooltip : { trigger: 'axis',axisPointer : { type : 'shadow'}},
+    xAxis: [
+        {   
+            type: 'category',
+            axisLine: { show: true,lineStyle:{ color:'#ddd' }},
+            axisLabel:{
+				textStyle:{color:'#ddd',fontSize:12} ,
+				interval:0,                                           
+				rotate:40},
+            axisTick : {show: false},
+            data:xAxisData,
+        },
+    ],
+    yAxis: [
+        {   
+            axisTick : {show: false},
+            splitLine: {show:false},
+            axisLabel:{textStyle:{color:'#ddd',fontSize:14} },
+            axisLine: { show: true,lineStyle:{ color:'#ddd'}},
+        },
+    ],
+    series:serieData
+};
+
+	if (option && typeof option === "object") {
+		myChart.setOption(option, true);
+	}
+}
+
+
+function drawChart(data1,data2,data3,data4){
+	document.getElementById("shenji_charts").innerHTML = "<div id='charts' style='height:99%;width:99%;position:relative;top:5%;'></div>";
+	var dom = document.getElementById("charts");
+	var myChart = echarts.init(dom);
+	var app = {};
+	option = null;
+
+	//var legendes =data1 ;
+	var texts = [{"name":"trade","itemStyle":{"normal":{"color":"#2ca4bf"}}}];
+	var listdata = data3;
+	var links = data4;
+
+	var option = {
+        title: {
+            text: ''
+        },	
+		animationDurationUpdate: 300,
+        animationEasingUpdate: 'quinticInOut',
+        series : [
+            {
+                type: 'graph',
+                layout:'force',
+                symbol:'circle',
+                //symbolSize:15,
+                roam: true,
+                focusNodeAdjacency:false,
+                legendHoverLink:true,
+                draggable:true,
+                force : {
+                    repulsion :240,
+                    gravity : 0.03,
+                    edgeLength :90,
+                    layoutAnimation : true
+                },
+                categories: texts,
+                label: {
+                    normal: {
+                        show: true,
+                        position:"left",
+                        textStyle:{
+                            color:'#000',
+                            fontSize:'12'
+                        }
+
+                    }
+                },
+                data: listdata,
+                links:links,
+                lineStyle: {
+                    normal: {
+                        width: 2,
+                        color: {
+                            type: 'radial',
+                            x: 0.5,
+                            y: 0.5,
+                            r: 0.5,
+                            globalCoord: false 
+                        }
+
+                    }
+                }
+            }
+        ]
+    };
+	if (option && typeof option === "object") {
+		myChart.setOption(option, true);
+		//window.addEventListener(&#39;resize&#39;, function () { myChart.resize(); }); 
+	}
+}
+
+function chart(){
+	
+	var i=1;
+	jQuery.ajax({
+		type: "GET",  
+        url: "/chart",
+        contentType: "application/json",
+        success: function (data) {
+        	console.log(data['data1'],data['data2'],data['data3'],data['data4']);
+			drawChart(data['data1'],data['data2'],data['data3'],data['data4']);
+    	},
+    })
+}
+
+function way(){
+	var i=2;
+	jQuery.ajax({
+		type: "GET",  
+        url: "/way",
+        contentType: "application/json",
+        success: function (data) {
+        	console.log(data['data1']);
+			drawWay(data['data1']);
+    	},
+    })
+}
+
+function mode(){
+	var i=3;
+	jQuery.ajax({
+		type: "GET",  
+        url: "/mode",
+        contentType: "application/json",
+        success: function (data) {
+        	console.log(data['data1'],data['data2']);
+			drawMode(data['data1'],data['data2']);
+    	},
+    })
+}
+
+function product(){
+	var i=4;
+	jQuery.ajax({
+		type: "GET",  
+        url: "/product",
+        contentType: "application/json",
+        success: function (data) {
+        	console.log(data['data1']);
+			drawProduct(data['data1']);
+    	},
+    })
+}
+
+function agent(){
+	var i=5;
+	jQuery.ajax({
+		type: "GET",  
+        url: "/agent",
+        contentType: "application/json",
+        success: function (data) {
+        	console.log(data['data1'],data['data2']);
+			drawAgent(data['data1'],data['data2']);
+    	},
+    })
+}
+</script>
+</body>
+</html>

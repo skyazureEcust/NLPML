@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/中汇舆情大屏自制.iml" filepath="$PROJECT_DIR$/.idea/中汇舆情大屏自制.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../中汇舆情大屏/.idea/审计项目.iml" filepath="$PROJECT_DIR$/../中汇舆情大屏/.idea/审计项目.iml" />
+    </modules>
+  </component>
+</project>

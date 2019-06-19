@@ -1,0 +1,4 @@
+init
+row_num_rate: 40152 row_num_news: 19062
+num_extract_rate: 3240.0 num_extract_news: 648.0
+NowID: 40154 19068 status: 0

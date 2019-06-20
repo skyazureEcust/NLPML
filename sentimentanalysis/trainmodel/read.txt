@@ -1,0 +1,9 @@
+dictionary:存放各种词典
+efiles：存放各种原始文件和中间文件
+eImage：存放实验结果图片
+eSentimentModel：存放生成的分类模型
+eTiaocan：调参方法，获得模型dGetClassifyModel_NB_LR_RF_ConfusionMatrix_GridSearchCV.py
+exchangeNewsSentimentAnalyze:整个模型生成的准备工作，以及情感强度计算
+原始数据---标记---两位专家标记---计算标记的一直度（百分比），取相同的标记数据；
+采用词向量---将数据向量化（词向量  和 情感词加权重的词向量结果）---使用不同的方法训练；
+计算情感强度
